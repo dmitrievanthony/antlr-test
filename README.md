@@ -11,13 +11,13 @@ trades.add(new Trade("New", "Closed", "45", "CLIENT42", "Option", 45.0, "EURUSD"
 trades.add(new Trade("New", "Closed", "46", "CLIENT42", "Option", 46.0, "EURUSD", 5.0, 15.0, 1.5, 2.5));
 
 trades.stream()
-    .filter(TradeFilterFactory.parseExpression("trade status = 'Open'"))
+    .filter(TradeFilterFactory.parseExpression("spot >= 2.2 and (strike < 1.3 or strike > 1.4)"))
     .forEach(trade -> System.out.println("Trade " + trade.getTradeId()));
 ```
 
 The result of this code execution will be:
 
 ```
-Trade 42
 Trade 43
+Trade 46
 ```
