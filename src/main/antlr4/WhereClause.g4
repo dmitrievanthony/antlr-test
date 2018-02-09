@@ -23,7 +23,7 @@ STARTS_WITH : 'starts with';
 LPAREN : '(' ;
 RPAREN : ')' ;
 WS : ( ' ' | '\t' )+ ;
-STRING : '"' (~[\\"] | '\\' [\\"])* '"' ;
+STRING : ('"' (~[\\"] | '\\' [\\"])* '"' | '\'' (~[\\"] | '\\' [\\"])* '\'') ;
 NUMERIC : [0-9]+('.'[0-9]+)? ;
 
 andOrOperator

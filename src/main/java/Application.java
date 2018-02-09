@@ -1,6 +1,10 @@
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Main class with example that demonstrates how to use ANTLR-based expression parser and filter collection of entries
+ * using SQL-like predicate.
+ */
 public class Application {
 
     public static void main(String... args) {
@@ -13,36 +17,36 @@ public class Application {
 
         System.out.println("======");
         trades.stream()
-                .filter(TradeFilterFactory.parseExpression("trade status = \"Open\""))
-                .forEach(trade -> System.out.println(trade.getTradeId()));
+            .filter(TradeFilterFactory.parseExpression("trade status = 'Open'"))
+            .forEach(trade -> System.out.println("Trade " + trade.getTradeId()));
 //        ======
-//        42
-//        43
+//        Trade 42
+//        Trade 43
 
         System.out.println("======");
         trades.stream()
-                .filter(TradeFilterFactory.parseExpression("trade status = \"Open\" or spot > 2.4"))
-                .forEach(trade -> System.out.println(trade.getTradeId()));
+            .filter(TradeFilterFactory.parseExpression("trade status = 'Open' or spot > 2.4"))
+            .forEach(trade -> System.out.println("Trade " + trade.getTradeId()));
 //        ======
-//        42
-//        43
-//        46
+//        Trade 42
+//        Trade 43
+//        Trade 46
 
         System.out.println("======");
         trades.stream()
-                .filter(TradeFilterFactory.parseExpression("spot >= 2.2 and (strike < 1.3 or strike > 1.4)"))
-                .forEach(trade -> System.out.println(trade.getTradeId()));
+            .filter(TradeFilterFactory.parseExpression("spot >= 2.2 and (strike < 1.3 or strike > 1.4)"))
+            .forEach(trade -> System.out.println("Trade " + trade.getTradeId()));
 //        ======
-//        43
-//        46
+//        Trade 43
+//        Trade 46
 
         System.out.println("======");
         trades.stream()
-                .filter(TradeFilterFactory.parseExpression("spot >= 2.2 and (strike < 1.3 or strike > 1.4 or (ccy pair = \"EURUSD\" and strike > 1.3))"))
-                .forEach(trade -> System.out.println(trade.getTradeId()));
+            .filter(TradeFilterFactory.parseExpression("spot >= 2.2 and (strike < 1.3 or strike > 1.4 or (ccy pair = 'EURUSD' and strike > 1.3))"))
+            .forEach(trade -> System.out.println("Trade " + trade.getTradeId()));
 //        ======
-//        43
-//        45
-//        46
+//        Trade 43
+//        Trade 45
+//        Trade 46
     }
 }
